@@ -1,0 +1,4 @@
+---
+- include: common_pkg.yml
+- include: personal_settings.yml
+- include: ruby.yml

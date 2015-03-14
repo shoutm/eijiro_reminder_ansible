@@ -1,0 +1,12 @@
+---
+- name: ensure common packages are installed
+  apt: name={{item}} state=present
+  sudo: true
+  with_items:
+    - vim
+    - zsh
+    - git
+    - tmux
+    - screen
+    - ack-grep
+    - tree
