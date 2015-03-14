@@ -1,0 +1,11 @@
+= EijiroReminder Ansible
+
+== About this software
+This is for setting up dev environment for EijiroReminder.
+
+https://github.com/shoutm/EijiroReminder
+
+== How to setup
+1. Write your server IP down in er_dev_server
+2. Type a command below.
+  $ ansible-playbook site.yml --ask-sudo-pass -i er_dev_server
