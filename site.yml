@@ -8,8 +8,8 @@
     - name: create work directory
       file: path=~/work state=directory
     - name: fetch the latest source code from github
-      git:  repo=git@github.com:shoutm/EijiroReminder.git
-              dest=~/work/EijiroReminder
+      git:  repo=git@github.com:{{github_account}}/EijiroReminder.git
+              dest=~{{os_user}}/work/EijiroReminder
     - name: bundle install
-      shell: chdir=/home/shoutm/work/EijiroReminder bundle install
+      shell: chdir=~{{os_user}}/work/EijiroReminder bundle install
       sudo: true

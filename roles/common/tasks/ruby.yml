@@ -16,12 +16,10 @@
     - libxslt1-dev
     - libcurl4-openssl-dev
     - software-properties-common
-  tags: ruby
 
 - name: add ruby-ng repository
   apt_repository: repo="ppa:brightbox/ruby-ng"
   sudo: true
-  tags: ruby
 
 - name: install ruby by apt
   apt: name={{item}} state=present update_cache=yes
@@ -29,7 +27,6 @@
     - "{{ruby.package}}"
     - "{{ruby.package}}-dev"
   sudo: true
-  tags: ruby
 
 - name: check bundler gem is installed
   shell: gem list | grep bundler

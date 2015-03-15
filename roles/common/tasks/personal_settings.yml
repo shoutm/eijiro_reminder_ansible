@@ -1,7 +1,7 @@
 ---
 - name: fetch dotfiles from github
-  git:  repo=git@github.com:shoutm/dotfiles.git
-          dest=~{{os_user}}/dotfiles
+  git:  repo=git@github.com:{{github_account}}/dotfiles.git
+          dest=~{{os_user}}/dotfiles accept_hostkey=true
 
 - name: check .vimrc is up-to-date
   shell: diff ~{{os_user}}/dotfiles/.vimrc ~{{os_user}}/.vimrc

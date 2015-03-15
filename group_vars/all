@@ -1,5 +1,6 @@
 ---
 os_user: shoutm
+github_account: shoutm
 databases:
   - name: er_dev
     user: shoutm

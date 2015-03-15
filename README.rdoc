@@ -5,7 +5,13 @@ This is for setting up dev environment for EijiroReminder.
 
 https://github.com/shoutm/EijiroReminder
 
+== Prerequisites
+1. You have your own ssh private key as ~/.ssh/id_rsa.
+2. You have your github account.
+
 == How to setup
-1. Write your server IP down in er_dev_server
-2. Type a command below.
-  $ ansible-playbook site.yml --ask-sudo-pass -i er_dev_server
+1. Change the setting file "group_vars/all"
+2. Write your server IP down in er_dev_server
+3. Type a command below.
+  $ ansible-playbook site.yml --ask-pass --ask-sudo-pass -i er_dev_server
+  # --ask-pass is needed only at the first time to run this script

@@ -1,0 +1,13 @@
+---
+- name: create .ssh directory
+  file: dest={{ansible_env.HOME}}/.ssh state=directory
+    owner={{ansible_env.USER}}
+
+- name: copy local id_rsa to remote
+  copy: src=~/.ssh/id_rsa dest={{ansible_env.HOME}}/.ssh/id_rsa
+    mode=0600 owner={{ansible_env.USER}} group={{ansible_env.USER}}
+
+- name: get authorized_keys from github
+  get_url: url="https://github.com/{{ansible_env.USER}}.keys"
+    dest={{ansible_env.HOME}}/.ssh/authorized_keys
+    mode=0600 owner={{ansible_env.USER}} group={{ansible_env.USER}}

@@ -1,4 +1,9 @@
 ---
+- include: ssh.yml
+  tags: ssh
 - include: common_pkg.yml
+  tags: common_pkg
 - include: personal_settings.yml
+  tags: personal_settings
 - include: ruby.yml
+  tags: ruby
