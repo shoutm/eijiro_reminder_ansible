@@ -50,6 +50,12 @@
     ~{{os_user}}/.zshrc_prompt_color
   when: result.rc
 
+- name: create ~/.vim/bundle directory
+  file: path=~{{os_user}}/.vim/bundle state=directory
+- name: git clone NeoBundle
+  git:  repo=git@github.com:Shougo/neobundle.vim
+          dest=~{{os_user}}/.vim/bundle/neobundle.vim
+          accept_hostkey=true
 
 - name: change login shell
   user: name={{os_user}} shell=/bin/zsh
