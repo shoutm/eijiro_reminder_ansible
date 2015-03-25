@@ -10,3 +10,4 @@
     - screen
     - ack-grep
     - tree
+    - ctags
