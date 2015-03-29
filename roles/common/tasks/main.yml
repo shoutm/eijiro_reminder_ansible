@@ -5,5 +5,7 @@
   tags: common_pkg
 - include: personal_settings.yml
   tags: personal_settings
+- include: git_config.yml
+  tags: git_config
 - include: ruby.yml
   tags: ruby
