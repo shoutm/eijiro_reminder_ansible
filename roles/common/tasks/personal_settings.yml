@@ -60,3 +60,6 @@
 - name: change login shell
   user: name={{os_user}} shell=/bin/zsh
   sudo: true
+
+- name: create work directory
+  file: path=~/work state=directory

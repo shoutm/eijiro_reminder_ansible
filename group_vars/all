@@ -3,10 +3,3 @@ name: Shouta\ Morimoto
 email: shouta.morimoto@gmail.com
 os_user: shoutm
 github_account: shoutm
-databases:
-  - name: er_dev
-    user: shoutm
-  - name: er_test
-    user: shoutm
-  - name: er
-    user: shoutm

@@ -6,7 +6,7 @@
   failed_when: false
 - name: set user.name for git
   shell: git config --global user.name {{name}}
-  when: result.rc
+  when: result.stdout != "{{name}}"
 
 - name: check user.email for git is set
   shell: git config --global user.email
@@ -15,4 +15,4 @@
   failed_when: false
 - name: set user.email for git
   shell: git config --global user.email {{email}}
-  when: result.rc
+  when: result.stdout != "{{email}}"

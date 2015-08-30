@@ -1,0 +1,9 @@
+---
+# Eijiro settings
+databases:
+  - name: er_dev
+    user: shoutm
+  - name: er_test
+    user: shoutm
+  - name: er
+    user: shoutm

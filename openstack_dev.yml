@@ -1,0 +1,6 @@
+---
+- hosts: openstack_dev_server
+  remote_user: "{{os_user}}"
+  roles:
+    - common
+    - openstack_dev
