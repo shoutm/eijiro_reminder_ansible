@@ -1,9 +1,10 @@
-= EijiroReminder Ansible
+= Shoutm Ansible
 
 == About this software
-This is for setting up dev environment for EijiroReminder.
-
-https://github.com/shoutm/EijiroReminder
+This ansible helps:
+1. Installing basic packages via apt / initial setting.
+2. Setting up a dev environment for EijiroReminder.
+   * https://github.com/shoutm/EijiroReminder
 
 == Prerequisites
 1. You have your own ssh private key as ~/.ssh/id_rsa.
@@ -11,7 +12,9 @@ https://github.com/shoutm/EijiroReminder
 
 == How to setup
 1. Change the setting file "group_vars/all"
-2. Write your server IP down in er_dev_server
-3. Type a command below.
-  $ ansible-playbook site.yml --ask-pass --ask-sudo-pass -i er_dev_server
+2. Write your server IP down in target_server
+
+=== Setting up EijiroReminder dev environment
+1. Type a command below.
+  $ ansible-playbook eijiro.yml --ask-pass --ask-sudo-pass -i target_server
   # --ask-pass is needed only at the first time to run this script

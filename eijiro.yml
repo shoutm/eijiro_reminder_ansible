@@ -1,5 +1,5 @@
 ---
-- hosts: er_dev_server
+- hosts: target_server
   remote_user: "{{os_user}}"
   roles:
     - common
