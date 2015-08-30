@@ -4,14 +4,4 @@
   roles:
     - common
     - postgresql
-  tasks:
-    - name: create work directory
-      file: path=~/work state=directory
-    - name: fetch the latest source code from github
-      git:  repo=git@github.com:{{github_account}}/EijiroReminder.git
-              dest=~{{os_user}}/work/EijiroReminder
-    - name: bundle install
-      shell: chdir=~{{os_user}}/work/EijiroReminder bundle install
-      sudo: true
-    - name: rake db migrate
-      shell: chdir=~{{os_user}}/work/EijiroReminder rake db\:migrate
+    - eijiro_reminder
