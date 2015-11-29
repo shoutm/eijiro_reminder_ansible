@@ -1,0 +1,8 @@
+---
+- name: ensure required packages are installed for Python
+  apt: name={{item}} state=present
+  sudo: true
+  with_items:
+    - python-pip
+    - python-virtualenv
+    - virtualenvwrapper

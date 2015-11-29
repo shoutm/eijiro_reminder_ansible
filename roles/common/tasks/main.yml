@@ -9,3 +9,5 @@
   tags: git_config
 - include: ruby.yml
   tags: ruby
+- include: python.yml
+  tags: python
