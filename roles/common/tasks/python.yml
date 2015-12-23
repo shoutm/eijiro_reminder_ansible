@@ -5,10 +5,6 @@
   with_items:
     - 'python-pip'
     - 'python-virtualenv'
-    - virtualenvwrapper
 - name: ensure pyenv is installed
   git:  repo=https://github.com/yyuu/pyenv.git
           dest=~{{os_user}}/.pyenv
-- name: ensure pyenv virtualenv is installed
-  git:  repo=https://github.com/yyuu/pyenv-virtualenv.git
-          dest=~{{os_user}}/.pyenv/plugin/pyenv-virtualenv
