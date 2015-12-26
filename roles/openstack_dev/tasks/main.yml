@@ -1,3 +1,5 @@
 ---
 - include: openstack_dev_pkg.yml
   tags: openstack_dev_pkg
+- include: keystone.yml
+  tags: keystone
