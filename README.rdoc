@@ -12,7 +12,8 @@ This ansible helps:
 2. You have your github account.
 
 == How to setup
-1. Write your server IP down in target_servers
+1. Copy target_servers.sample to target_servers
+2. Write your server IP down in target_servers
 
 === Setting up EijiroReminder dev environment
 1. Type a command below.
