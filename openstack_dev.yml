@@ -4,3 +4,4 @@
   roles:
     - common
     - openstack_dev
+    - samba
