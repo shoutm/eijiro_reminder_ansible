@@ -34,9 +34,9 @@
 - name: ensure ruby-build is installed
   git:  repo=https://github.com/rbenv/ruby-build.git
           dest=~{{os_user}}/.rbenv/plugins/ruby-build
-- name: ensure rbenv-bundler  is installed
-  git:  repo=https://github.com/carsomyr/rbenv-bundler.git
-          dest=~{{os_user}}/.rbenv/plugins/bundler
+- name: ensure rbenv-binstubs is installed
+  git:  repo=https://github.com/ianheggie/rbenv-binstubs.git
+          dest=~{{os_user}}/.rbenv/plugins/rbenv-binstubs
 
 - name: check bundler gem is installed
   shell: gem list | grep bundler
