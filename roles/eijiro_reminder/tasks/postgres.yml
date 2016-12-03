@@ -1,0 +1,13 @@
+---
+- name: add dbs to PostgreSQL
+  postgresql_db: name={{item.name}}
+  sudo: true
+  sudo_user: postgres
+  with_items:
+    - "{{databases}}"
+- name: add a new user to PostgreSQL
+  postgresql_user: name={{item.user}}
+  sudo: true
+  sudo_user: postgres
+  with_items:
+    - "{{databases}}"

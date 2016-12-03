@@ -1,9 +1,10 @@
 ---
 - name: fetch the latest source code from github
   git:  repo=git@github.com:{{github_account}}/EijiroReminder.git
-          dest=~{{os_user}}/work/EijiroReminder
+          dest={{eijiro_dir}}
+- include: postgres.yml
+- include: ruby.yml
 - name: bundle install
-  shell: chdir=~{{os_user}}/work/EijiroReminder bundle install
-  sudo: true
+  shell: chdir={{eijiro_dir}} {{bundler_path}} install --binstubs .bundle/bin --path vendor/bundle
 - name: rake db migrate
-  shell: chdir=~{{os_user}}/work/EijiroReminder rake db\:migrate
+  shell: chdir={{eijiro_dir}} {{bundler_path}} exec rake db:migrate

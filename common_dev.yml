@@ -1,8 +1,7 @@
 ---
-- hosts: openstack_dev_server
+- hosts: common_dev_server
   remote_user: "{{os_user}}"
   roles:
     - common
+    - ruby
     - python
-    - openstack_dev
-    - samba

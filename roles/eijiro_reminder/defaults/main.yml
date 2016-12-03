@@ -1,0 +1,7 @@
+---
+ruby_version: 2.1
+eijiro_dir:   /home/{{os_user}}/work/EijiroReminder
+rbenv_root:   /home/{{os_user}}/.rbenv
+rbenv_path:   "{{rbenv_root}}/bin/rbenv"
+gem_path:     "{{rbenv_root}}/shims/gem"
+bundler_path: "{{rbenv_root}}/shims/bundler"

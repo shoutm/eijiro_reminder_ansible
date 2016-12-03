@@ -1,3 +1,6 @@
+[common_dev_server]
+PLACE_YOUR_IP_HERE
+
 [openstack_dev_server]
 PLACE_YOUR_IP_HERE
 

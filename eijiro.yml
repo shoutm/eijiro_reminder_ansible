@@ -2,6 +2,4 @@
 - hosts: er_dev_server
   remote_user: "{{os_user}}"
   roles:
-    - common
-    - postgresql
     - eijiro_reminder

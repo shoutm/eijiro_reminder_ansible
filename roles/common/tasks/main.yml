@@ -7,7 +7,3 @@
   tags: personal_settings
 - include: git_config.yml
   tags: git_config
-- include: ruby.yml
-  tags: ruby
-- include: python.yml
-  tags: python
