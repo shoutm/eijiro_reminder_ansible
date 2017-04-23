@@ -37,6 +37,9 @@
 - name: ensure rbenv-binstubs is installed
   git:  repo=https://github.com/ianheggie/rbenv-binstubs.git
           dest=~{{os_user}}/.rbenv/plugins/rbenv-binstubs
+- name: ensure rbenv-gemset is installed
+  git:  repo=https://github.com/jamis/rbenv-gemset.git
+          dest=~{{os_user}}/.rbenv/plugins/rbenv-gemset
 
 - name: check bundler gem is installed
   shell: gem list | grep bundler
