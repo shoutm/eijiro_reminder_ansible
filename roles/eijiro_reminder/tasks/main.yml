@@ -2,8 +2,8 @@
 - name: fetch the latest source code from github
   git:  repo=git@github.com:{{github_account}}/EijiroReminder.git
           dest={{eijiro_dir}}
-- include: postgres.yml
-- include: ruby.yml
+- import_tasks: postgres.yml
+- import_tasks: ruby.yml
 - name: bundle install
   shell: chdir={{eijiro_dir}} {{bundler_path}} install --binstubs .bundle/bin --path vendor/bundle
 - name: rake db migrate

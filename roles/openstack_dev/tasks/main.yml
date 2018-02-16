@@ -1,5 +1,5 @@
 ---
-- include: openstack_dev_pkg.yml
+- import_tasks: openstack_dev_pkg.yml
   tags: openstack_dev_pkg
-- include: keystone.yml
+- import_tasks: keystone.yml
   tags: keystone

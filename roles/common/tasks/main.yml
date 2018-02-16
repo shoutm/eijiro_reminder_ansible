@@ -1,9 +1,9 @@
 ---
-- include: ssh.yml
+- import_tasks: ssh.yml
   tags: ssh
-- include: common_pkg.yml
+- import_tasks: common_pkg.yml
   tags: common_pkg
-- include: personal_settings.yml
+- import_tasks: personal_settings.yml
   tags: personal_settings
-- include: git_config.yml
+- import_tasks: git_config.yml
   tags: git_config

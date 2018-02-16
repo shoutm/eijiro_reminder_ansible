@@ -17,10 +17,10 @@ This ansible helps:
 
 === Setting up EijiroReminder dev environment
 1. Type a command below.
-  $ ansible-playbook eijiro.yml --ask-pass --ask-sudo-pass -i target_servers
+  $ ansible-playbook eijiro.yml -k -K -i target_servers
   # --ask-pass is needed only at the first time to run this script
 
 === Setting up openstack dev environment
 1. Type a command below.
-  $ ansible-playbook openstack_dev.yml --ask-pass --ask-sudo-pass -i target_servers
+  $ ansible-playbook openstack_dev.yml -k -K -i target_servers
   # --ask-pass is needed only at the first time to run this script
