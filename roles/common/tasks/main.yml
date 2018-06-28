@@ -7,5 +7,7 @@
   tags: personal_settings
 - import_tasks: git_config.yml
   tags: git_config
+- import_tasks: tmux.yml
+  tags: tmux
 - import_tasks: tools.yml
   tags: tools
