@@ -1,6 +1,6 @@
 ---
 - name: Install git packages
   apt: name={{item}} state=present update_cache=yes
-  sudo: true
+  become: yes
   with_items: 
     - git-review

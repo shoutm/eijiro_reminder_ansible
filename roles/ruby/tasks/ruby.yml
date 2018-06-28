@@ -1,7 +1,7 @@
 ---
 - name: ensure required packages are installed for Ruby
   apt: name={{item}} state=present
-  sudo: true
+  become: yes
   with_items:
     - git-core
     - curl
@@ -19,14 +19,14 @@
 
 - name: add ruby-ng repository
   apt_repository: repo="ppa:brightbox/ruby-ng"
-  sudo: true
+  become: yes
 
 - name: install system ruby by apt
   apt: name={{item}} state=present update_cache=yes
   with_items:
     - "{{ruby.package}}"
     - "{{ruby.package}}-dev"
-  sudo: true
+  become: yes
 
 - name: ensure rbenv is installed
   git:  repo=https://github.com/rbenv/rbenv.git
@@ -50,4 +50,4 @@
 - name: install bundler gem
   shell: gem install bundler
   when: result.rc != 0
-  sudo: true
+  become: yes

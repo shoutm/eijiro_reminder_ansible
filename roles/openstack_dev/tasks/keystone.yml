@@ -1,7 +1,7 @@
 ---
 - name: ensure required python packages are installed for Keystone
   apt: name={{item}} state=present
-  sudo: true
+  become: yes
   with_items:
     - 'python-dev'
     - 'python3-dev'

@@ -1,15 +1,15 @@
 ---
 - name: ensure packages are installed for samba
   apt: name={{item}} state=present
-  sudo: true
+  become: yes
   with_items:
     - 'samba'
 
 - name: configure smb.conf
   template: src=smb.conf.j2 dest=/etc/samba/smb.conf \
             owner=root group=root mode=0644
-  sudo: true
+  become: yes
 
 - name: restart smbd
   service: name=smbd state=restarted
-  sudo: true
+  become: yes
