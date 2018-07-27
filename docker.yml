@@ -2,4 +2,4 @@
 - hosts: all
   remote_user: "{{os_user}}"
   roles:
-    - eijiro_reminder
+    - docker
