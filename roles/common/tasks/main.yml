@@ -9,5 +9,3 @@
   tags: git_config
 - import_tasks: tmux.yml
   tags: tmux
-- import_tasks: tools.yml
-  tags: tools

@@ -1,13 +1,8 @@
 ---
 - name: ensure common packages are installed
-  apt: name={{item}} state=present update_cache=yes
+  apt:
+    name: ['vim', 'neovim', 'zsh', 'git', 'tmux', 'screen', 'ack-grep',
+           'tree', 'ctags']
+    state: present
+    update_cache: yes
   become: yes
-  with_items:
-    - vim
-    - zsh
-    - git
-    - tmux
-    - screen
-    - ack-grep
-    - tree
-    - ctags

@@ -1,62 +1,99 @@
 ---
 - name: fetch dotfiles from github
   git:  repo=git@github.com:{{github_account}}/dotfiles.git
-          dest=~{{os_user}}/dotfiles accept_hostkey=true
+          dest={{ansible_env.HOME}}/dotfiles accept_hostkey=true
 
-- name: check .vimrc is up-to-date
-  shell: diff ~{{os_user}}/dotfiles/.vimrc ~{{os_user}}/.vimrc
-  register: result
-  changed_when: false
-  failed_when: false
-- name: cp .vimrc
-  shell: cp ~{{os_user}}/dotfiles/.vimrc ~{{os_user}}/.vimrc
-  when: result.rc
+## config files
+- name: copy .vimrc
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.vimrc"
+    dest: "{{ansible_env.HOME}}/.vimrc"
+    remote_src: yes
 
-- name: check .tmux.conf is up-to-date
-  shell: diff ~{{os_user}}/dotfiles/.tmux.conf ~{{os_user}}/.tmux.conf
-  register: result
-  changed_when: false
-  failed_when: false
-- name: cp .tmux.conf
-  shell: cp ~{{os_user}}/dotfiles/.tmux.conf ~{{os_user}}/.tmux.conf
-  when: result.rc
+- name: copy .tmux.conf
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.tmux.conf"
+    dest: "{{ansible_env.HOME}}/.tmux.conf"
+    remote_src: yes
 
-- name: check .screenrc is up-to-date
-  shell: diff ~{{os_user}}/dotfiles/.screenrc ~{{os_user}}/.screenrc
-  register: result
-  changed_when: false
-  failed_when: false
-- name: cp .screenrc
-  shell: cp ~{{os_user}}/dotfiles/.screenrc ~{{os_user}}/.screenrc
-  when: result.rc
+- name: copy .screenrc
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.screenrc"
+    dest: "{{ansible_env.HOME}}/.screenrc"
+    remote_src: yes
 
-- name: check .zshrc is up-to-date
-  shell: diff ~{{os_user}}/dotfiles/.zshrc ~{{os_user}}/.zshrc
-  register: result
-  changed_when: false
-  failed_when: false
-- name: cp .zshrc
-  shell: cp ~{{os_user}}/dotfiles/.zshrc ~{{os_user}}/.zshrc
-  when: result.rc
 
-- name: check .zshrc_prompt_color is up-to-date
-  shell: diff ~{{os_user}}/dotfiles/.zshrc_prompt_color
-    ~{{os_user}}/.zshrc_prompt_color
-  register: result
-  changed_when: false
-  failed_when: false
-- name: cp .zshrc_prompt_color
-  shell: cp ~{{os_user}}/dotfiles/.zshrc_prompt_color
-    ~{{os_user}}/.zshrc_prompt_color
-  when: result.rc
+# NVIM
+- name: create ~/.config/nvim directory
+  file:
+    path: "{{ansible_env.HOME}}/.config/nvim"
+    state: directory
+- name: copy .config/nvim/init.vim
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.config/nvim/init.vim"
+    dest: "{{ansible_env.HOME}}/.config/nvim/init.vim"
+    remote_src: yes
 
-- name: create ~/.vim/bundle directory
-  file: path=~{{os_user}}/.vim/bundle state=directory
-- name: git clone NeoBundle
-  git:  repo=git@github.com:Shougo/neobundle.vim
-          dest=~{{os_user}}/.vim/bundle/neobundle.vim
-          accept_hostkey=true
+- name: copy .dein.toml
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.dein.toml"
+    dest: "{{ansible_env.HOME}}/.dein.toml"
+    remote_src: yes
 
+- name: copy .dein_lazy.toml
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.dein_lazy.toml"
+    dest: "{{ansible_env.HOME}}/.dein_lazy.toml"
+    remote_src: yes
+
+
+# dein
+- name: create ~/.cache/dein
+  file:
+    path: "{{ansible_env.HOME}}/.cache/dein"
+    state: directory
+- name: Install dein
+  git:
+    repo: https://github.com/Shougo/dein.vim
+    dest: "{{ansible_env.HOME}}/.cache/dein/repos/github.com/Shougo/dein.vim"
+
+
+# Zsh / Prezto
+- name: git clone prezto
+  git:
+    repo: https://github.com/sorin-ionescu/prezto.git
+    dest: "{{ansible_env.HOME}}/.zprezto"
+- name: Link rcfiles
+  file:
+    src: "{{ansible_env.HOME}}/.zprezto/runcoms/{{item}}"
+    dest: "{{ansible_env.HOME}}/.{{item}}"
+    state: link
+  loop: # zpreztorc and .zshrc are not symlinked because I have my own their files
+    - zlogin
+    - zlogout
+    - zprofile
+    - zshenv
+- name: copy .zshrc
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.zshrc"
+    dest: "{{ansible_env.HOME}}/.zshrc"
+    remote_src: yes
+- name: Copy .zpreztorc
+  copy:
+    src: "{{ansible_env.HOME}}/dotfiles/.zpreztorc"
+    dest: "{{ansible_env.HOME}}/.zpreztorc"
+    remote_src: yes
+- name: Make an external module directory
+  file:
+    path: "{{ansible_env.HOME}}/.zprezto-contrib"
+    state: directory
+- name: git clone zsh-peco-history
+  git:
+    repo: https://github.com/jimeh/zsh-peco-history.git
+    dest: "{{ansible_env.HOME}}/.zprezto-contrib/zsh-peco-history"
+
+
+# etc
 - name: change login shell
   user: name={{os_user}} shell=/bin/zsh
   become: yes

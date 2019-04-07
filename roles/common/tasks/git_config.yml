@@ -1,18 +1,12 @@
 ---
-- name: check user.name for git is set
-  shell: git config --global user.name
-  register: result
-  changed_when: false
-  failed_when: false
 - name: set user.name for git
-  shell: git config --global user.name {{name}}
-  when: result.stdout != name
+  git_config:
+    name: user.name
+    value: "{{name}}"
+    scope: global
 
-- name: check user.email for git is set
-  shell: git config --global user.email
-  register: result
-  changed_when: false
-  failed_when: false
 - name: set user.email for git
-  shell: git config --global user.email {{email}}
-  when: result.stdout != email
+  git_config:
+    name: user.email
+    value: "{{email}}"
+    scope: global
