@@ -3,6 +3,8 @@
   tags: ssh
 - import_tasks: common_pkg.yml
   tags: common_pkg
+- import_tasks: neovim_package.yml
+  tags: neovim_package
 - import_tasks: personal_settings.yml
   tags: personal_settings
 - import_tasks: git_config.yml

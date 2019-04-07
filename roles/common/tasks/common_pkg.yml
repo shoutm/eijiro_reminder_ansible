@@ -1,7 +1,7 @@
 ---
-- name: ensure common packages are installed
+- name: install common packages
   apt:
-    name: ['vim', 'neovim', 'zsh', 'git', 'tmux', 'screen', 'ack-grep',
+    name: ['vim', 'zsh', 'git', 'tmux', 'screen', 'ack-grep',
            'tree', 'ctags']
     state: present
     update_cache: yes
