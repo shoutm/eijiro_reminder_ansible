@@ -1,53 +1,40 @@
 ---
-- name: ensure required packages are installed for Ruby
-  apt: name={{item}} state=present
-  become: yes
-  with_items:
-    - git-core
-    - curl
-    - zlib1g-dev
-    - build-essential
-    - libssl-dev
-    - libreadline-dev
-    - libyaml-dev
-    - libsqlite3-dev
-    - sqlite3
-    - libxml2-dev
-    - libxslt1-dev
-    - libcurl4-openssl-dev
-    - software-properties-common
-
-- name: add ruby-ng repository
-  apt_repository: repo="ppa:brightbox/ruby-ng"
+- name: install Ruby-related packages
+  apt:
+    name: ['git-core', 'curl', 'zlib1g-dev', 'build-essential', 'libssl-dev',
+     'libreadline-dev', 'libyaml-dev', 'libsqlite3-dev', 'sqlite3',
+     'libxml2-dev', 'libxslt1-dev', 'libcurl4-openssl-dev',
+     'software-properties-common']
+    state: present
   become: yes
 
 - name: install system ruby by apt
-  apt: name={{item}} state=present update_cache=yes
-  with_items:
-    - "{{ruby.package}}"
-    - "{{ruby.package}}-dev"
+  apt:
+    name: ruby-full
+    state: present
+    update_cache: yes
   become: yes
 
 - name: ensure rbenv is installed
-  git:  repo=https://github.com/rbenv/rbenv.git
-          dest=~{{os_user}}/.rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: "{{ansible_env.HOME}}/.rbenv"
 - name: ensure ruby-build is installed
-  git:  repo=https://github.com/rbenv/ruby-build.git
-          dest=~{{os_user}}/.rbenv/plugins/ruby-build
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: "{{ansible_env.HOME}}/.rbenv/plugins/ruby-build"
 - name: ensure rbenv-binstubs is installed
-  git:  repo=https://github.com/ianheggie/rbenv-binstubs.git
-          dest=~{{os_user}}/.rbenv/plugins/rbenv-binstubs
+  git:
+    repo: https://github.com/ianheggie/rbenv-binstubs.git
+    dest: "{{ansible_env.HOME}}/.rbenv/plugins/rbenv-binstubs"
 - name: ensure rbenv-gemset is installed
-  git:  repo=https://github.com/jamis/rbenv-gemset.git
-          dest=~{{os_user}}/.rbenv/plugins/rbenv-gemset
+  git:
+    repo: https://github.com/jamis/rbenv-gemset.git
+    dest: "{{ansible_env.HOME}}/.rbenv/plugins/rbenv-gemset"
 
-- name: check bundler gem is installed
-  shell: gem list | grep bundler
-  register: result
-  changed_when: false
-  failed_when: false
-
-- name: install bundler gem
-  shell: gem install bundler
-  when: result.rc != 0
+- name: install bundle gem
+  gem:
+    name: bundler
+    state: present
+    user_install: no
   become: yes
