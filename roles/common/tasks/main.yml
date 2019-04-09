@@ -11,3 +11,5 @@
   tags: git_config
 - import_tasks: tmux.yml
   tags: tmux
+- import_tasks: non_apt_tools.yml
+  tags: non_apt_tools
