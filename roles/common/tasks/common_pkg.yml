@@ -1,5 +1,5 @@
 ---
-- name: install common packages
+- name: Install common packages
   apt:
     name: ['vim', 'zsh', 'git', 'tmux', 'screen', 'ack-grep',
            'tree', 'ctags', 'jq']

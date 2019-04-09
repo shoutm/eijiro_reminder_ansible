@@ -1,5 +1,5 @@
 ---
-- name: install Ruby-related packages
+- name: Install Ruby-related packages
   apt:
     name: ['git-core', 'curl', 'zlib1g-dev', 'build-essential', 'libssl-dev',
      'libreadline-dev', 'libyaml-dev', 'libsqlite3-dev', 'sqlite3',
@@ -8,31 +8,31 @@
     state: present
   become: yes
 
-- name: install system ruby by apt
+- name: Install system ruby by apt
   apt:
     name: ruby-full
     state: present
     update_cache: yes
   become: yes
 
-- name: ensure rbenv is installed
+- name: Install rbenv
   git:
     repo: https://github.com/rbenv/rbenv.git
     dest: "{{ansible_env.HOME}}/.rbenv"
-- name: ensure ruby-build is installed
+- name: Install ruby-build
   git:
     repo: https://github.com/rbenv/ruby-build.git
     dest: "{{ansible_env.HOME}}/.rbenv/plugins/ruby-build"
-- name: ensure rbenv-binstubs is installed
+- name: Install rbenv-binstubs
   git:
     repo: https://github.com/ianheggie/rbenv-binstubs.git
     dest: "{{ansible_env.HOME}}/.rbenv/plugins/rbenv-binstubs"
-- name: ensure rbenv-gemset is installed
+- name: Install rbenv-gemset
   git:
     repo: https://github.com/jamis/rbenv-gemset.git
     dest: "{{ansible_env.HOME}}/.rbenv/plugins/rbenv-gemset"
 
-- name: install bundle gem
+- name: Install bundle gem
   gem:
     name: bundler
     state: present

@@ -1,22 +1,24 @@
 ---
-- name: fetch dotfiles from github
-  git:  repo=git@github.com:{{github_account}}/dotfiles.git
-          dest={{ansible_env.HOME}}/dotfiles accept_hostkey=true
+- name: Fetch dotfiles from github
+  git:
+    repo: git@github.com:{{github_account}}/dotfiles.git
+    dest: "{{ansible_env.HOME}}/dotfiles"
+    accept_hostkey: true
 
 ## config files
-- name: copy .vimrc
+- name: Copy .vimrc
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.vimrc"
     dest: "{{ansible_env.HOME}}/.vimrc"
     remote_src: yes
 
-- name: copy .tmux.conf
+- name: Copy .tmux.conf
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.tmux.conf"
     dest: "{{ansible_env.HOME}}/.tmux.conf"
     remote_src: yes
 
-- name: copy .screenrc
+- name: Copy .screenrc
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.screenrc"
     dest: "{{ansible_env.HOME}}/.screenrc"
@@ -24,23 +26,23 @@
 
 
 # NVIM
-- name: create ~/.config/nvim directory
+- name: Create ~/.config/nvim directory
   file:
     path: "{{ansible_env.HOME}}/.config/nvim"
     state: directory
-- name: copy .config/nvim/init.vim
+- name: Copy .config/nvim/init.vim
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.config/nvim/init.vim"
     dest: "{{ansible_env.HOME}}/.config/nvim/init.vim"
     remote_src: yes
 
-- name: copy .dein.toml
+- name: Copy .dein.toml
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.dein.toml"
     dest: "{{ansible_env.HOME}}/.dein.toml"
     remote_src: yes
 
-- name: copy .dein_lazy.toml
+- name: Copy .dein_lazy.toml
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.dein_lazy.toml"
     dest: "{{ansible_env.HOME}}/.dein_lazy.toml"
@@ -48,7 +50,7 @@
 
 
 # dein
-- name: create ~/.cache/dein
+- name: Create ~/.cache/dein
   file:
     path: "{{ansible_env.HOME}}/.cache/dein"
     state: directory
@@ -59,7 +61,7 @@
 
 
 # Zsh / Prezto
-- name: git clone prezto
+- name: Git clone prezto
   git:
     repo: https://github.com/sorin-ionescu/prezto.git
     dest: "{{ansible_env.HOME}}/.zprezto"
@@ -73,7 +75,7 @@
     - zlogout
     - zprofile
     - zshenv
-- name: copy .zshrc
+- name: Copy .zshrc
   copy:
     src: "{{ansible_env.HOME}}/dotfiles/.zshrc"
     dest: "{{ansible_env.HOME}}/.zshrc"
@@ -87,16 +89,16 @@
   file:
     path: "{{ansible_env.HOME}}/.zprezto-contrib"
     state: directory
-- name: git clone zsh-peco-history
+- name: Git clone zsh-peco-history
   git:
     repo: https://github.com/jimeh/zsh-peco-history.git
     dest: "{{ansible_env.HOME}}/.zprezto-contrib/zsh-peco-history"
 
 
 # etc
-- name: change login shell
+- name: Change login shell
   user: name={{os_user}} shell=/bin/zsh
   become: yes
 
-- name: create work directory
+- name: Create work directory
   file: path=~/work state=directory

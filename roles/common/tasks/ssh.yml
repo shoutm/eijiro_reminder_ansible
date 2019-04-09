@@ -1,13 +1,22 @@
 ---
-- name: create .ssh directory
-  file: dest={{ansible_env.HOME}}/.ssh state=directory
-    owner={{os_user}}
+- name: Create .ssh directory
+  file:
+    dest: "{{ansible_env.HOME}}/.ssh"
+    state: directory
+    owner: "{{os_user}}"
 
-- name: copy local id_rsa to remote
-  copy: src=~/.ssh/id_rsa dest={{ansible_env.HOME}}/.ssh/id_rsa
-    mode=0600 owner={{os_user}} group={{os_user}}
+- name: Copy local id_rsa to remote
+  copy:
+    src: ~/.ssh/id_rsa
+    dest: "{{ansible_env.HOME}}/.ssh/id_rsa"
+    mode: 0600
+    owner: "{{os_user}}"
+    group: "{{os_user}}"
 
-- name: get authorized_keys from github
-  get_url: url="https://github.com/{{github_account}}.keys"
-    dest={{ansible_env.HOME}}/.ssh/authorized_keys
-    mode=0600 owner={{os_user}} group={{os_user}}
+- name: Cet authorized_keys from github
+  get_url:
+    url: https://github.com/{{github_account}}.keys
+    dest: "{{ansible_env.HOME}}/.ssh/authorized_keys"
+    mode: 0600
+    owner: "{{os_user}}"
+    group: "{{os_user}}"
