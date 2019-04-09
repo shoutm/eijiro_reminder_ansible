@@ -2,7 +2,7 @@
 - name: install common packages
   apt:
     name: ['vim', 'zsh', 'git', 'tmux', 'screen', 'ack-grep',
-           'tree', 'ctags']
+           'tree', 'ctags', 'jq']
     state: present
     update_cache: yes
   become: yes
