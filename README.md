@@ -17,6 +17,8 @@ This ansible helps:
 
 ### Setting up Common dev environment
 1. Type a command below.
-  $ ansible-playbook common_dev.yml -k -K -i target_servers -D
-  # -k(--ask-pass) is needed only at the first time to run this script
+```
+$ ansible-playbook common_dev.yml -k -K -i target_servers -D
+```
+-k(--ask-pass) is needed only at the first time to run this script
 
