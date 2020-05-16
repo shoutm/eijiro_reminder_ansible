@@ -6,7 +6,7 @@ This ansible helps:
 2. Setting up a dev environment.
 
 ## Prerequisites
-1. You have your own ssh private key as ~/.ssh/id_rsa.
+1. You have your own ssh private key as ~/.ssh/id_ed25519.
 2. You have your github account.
 
 ## How to setup
