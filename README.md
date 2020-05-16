@@ -3,9 +3,7 @@
 ## About this software
 This ansible helps:
 1. Installing basic packages via apt / initial setting.
-2. Setting up a dev environment for EijiroReminder.
-   * https://github.com/shoutm/EijiroReminder
-3. Setting up a dev environment for openstack
+2. Setting up a dev environment.
 
 ## Prerequisites
 1. You have your own ssh private key as ~/.ssh/id_rsa.
@@ -21,4 +19,3 @@ This ansible helps:
 $ ansible-playbook common_dev.yml -k -K -i target_servers -D
 ```
 -k(--ask-pass) is needed only at the first time to run this script
-
