@@ -1,0 +1,5 @@
+---
+- name: Install goenv
+  git:
+    repo: https://github.com/syndbg/goenv.git
+    dest: "{{ansible_env.HOME}}/.goenv"
